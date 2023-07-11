@@ -1,0 +1,74 @@
+.profileCont{
+    background-image: url("../Images/Plans.png");
+       
+    width: 100%;
+    height: 400px;
+    background-color: #cccccc; /* Used if the image is unavailable */
+    
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+.tranheaddiv{
+    width: 800px;
+    height: 60px;
+    top: 246px;
+    left: 150px;
+
+}
+.profilehead{
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 50px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #1A1A1A;
+    top:250px;
+    position: absolute;
+}
+.profilehead{
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+    letter-spacing: 1px;
+    text-align: left;
+
+}
+.profilebread{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0.5833333134651184px;
+    text-align: left;
+
+}
+.profilelabel{
+    /* font-family: Montserrat; */
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.5833333134651184px;
+    text-align: left;
+    
+}
+.profileinput{
+    width: 781px;
+    height: 30px;
+    top: 24px;
+}
+.profilebtn{
+    width: 165px;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #0764E3;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.profileform{
+    display: flex;
+    
+}
+.profilebtndiv{
+    margin-top: 30px;
+}

@@ -1,0 +1,73 @@
+.navbar {
+    position: absolute;
+    left: 0%;
+    height: 60px;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+    mix-blend-mode: normal;
+    background-color: rgba(222, 222, 222, 0.25);
+    /* opacity: 0.5;  */
+}
+.navCont { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.cont1{
+    height: 60px;
+}
+.navLogo{
+    height: 60px;
+}
+.navItem{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-weight: 900;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+}
+.navbtn{
+    background-color: #0764E3;
+    color: white;
+    width: 121px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: 1.5;
+   
+}
+.navbtndiv{
+    /* background-color: #0764E3; */
+    color: white;
+    width: 121px;
+    height: 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-items: center;
+    margin-top: 10px;
+    opacity: 1;
+    
+   
+}
+.text{
+    font-weight: bold;
+}
+.muipaper{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+.dropdownitem{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 4px;
+   
+}

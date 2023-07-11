@@ -1,0 +1,44 @@
+.transactionCont{
+    background-image: url("../Images/Plans.png");
+       
+    width: 100%;
+    height: 400px;
+    background-color: #cccccc; /* Used if the image is unavailable */
+    
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+.tranheaddiv{
+    width: 800px;
+    height: 60px;
+    top: 246px;
+    left: 150px;
+
+}
+.tranhead{
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 50px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #1A1A1A;
+    top:250px;
+    position: absolute;
+}
+.transhead{
+    font-size: 40px;
+    font-weight: 900;
+    line-height: 60px;
+    letter-spacing: 1px;
+    text-align: left;
+
+}
+.tranbread{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 21px;
+    letter-spacing: 0.5833333134651184px;
+    text-align: left;
+
+}

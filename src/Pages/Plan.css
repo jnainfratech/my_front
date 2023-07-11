@@ -1,0 +1,50 @@
+.planheader{
+    background-image: url('../Images/Plans.png');
+    height: 360px;
+    width: 100%;
+    background-repeat: no-repeat;
+}
+.plantxt{
+    
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 50px;
+    letter-spacing: 1px;
+    text-align: left;
+    color: #1A1A1A;
+    top:250px;
+    position: absolute;
+}
+.planbread{
+    
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 16px;
+    letter-spacing: 0.5833333134651184px;
+
+    color: #1A1A1A;
+
+}
+.plantarrif{
+    font-family: Montserrat;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 1.333333969116211px;
+    text-align: left;
+
+}
+.plantarrifsm{
+    color:#595959;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: 0.3125px;
+    text-align: left;
+
+}
+.planreturn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
