@@ -84,6 +84,9 @@ const hanndleClick = ()=> {
 const handleLogoClick = ()=>{
     navigate("/")
 }
+const handleStructure = ()=>{
+    navigate('/Structure')
+}
   return (
     <div>
         <div className='navbar'>
@@ -100,7 +103,7 @@ const handleLogoClick = ()=>{
                             <p>About</p>
                         </div>
                         <div>
-                            <p>Use US</p>
+                            <p onClick={handleStructure}>Use US</p>
                         </div>
                         <div onClick={handlePlans}>
                             <p>Our Plans</p>
