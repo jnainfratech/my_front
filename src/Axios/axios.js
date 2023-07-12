@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url  = "http://143.110.186.152"
+const url  = "https://conceptcelerio.com/"
 // Create a new Axios instance
 const axiosInstance = axios.create({
   baseURL: url, // Set the base URL for all requests
