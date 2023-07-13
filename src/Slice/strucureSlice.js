@@ -6,7 +6,7 @@ import axios from 'axios';
 export const check = createAsyncThunk(
     'structure/check',
     async (data) =>{
-        const response =  axiosInstance.post('/checkvalue',data)
+        const response =  axiosInstance.post('/api/checkvalue',data)
         return response
     }
 )
@@ -14,7 +14,7 @@ export const check = createAsyncThunk(
 export const recheck = createAsyncThunk(
     'structure/recheck',
     async(data)=>{
-        const response = axiosInstance.post('/recheck',data)
+        const response = axiosInstance.post('/api/recheck',data)
         return response
     }
 )
@@ -23,7 +23,7 @@ export const genrate = createAsyncThunk(
     
     async(data)=>{
         console.log("Data send in genrate",data)
-        const response = await axiosInstance.post('/genrate',data, { responseType: 'blob' })
+        const response = await axiosInstance.post('/api/genrate',data, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([response.data]));
         console.log("data in res",response)
         const link = document.createElement('a');
