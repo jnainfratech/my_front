@@ -23,7 +23,7 @@ export const genrate = createAsyncThunk(
     
     async(data)=>{
         console.log("Data send in genrate",data)
-        const response = await axiosInstance.post('/api/genrate',data, { responseType: 'blob' })
+        const response = await axiosInstance.post('/genrate',data, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([response.data]));
         console.log("data in res",response)
         const link = document.createElement('a');
