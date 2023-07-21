@@ -44,6 +44,7 @@ function Structure() {
     const[sbc,setSbc] = useState(0)
     const[tdf,setTdf] = useState(0)
     const[aw,setAw] = useState(0)
+    const[no_of_s,setNo_of_s] = useState(0)
 
 
     const dispatch =  useDispatch()
@@ -94,7 +95,8 @@ function Structure() {
             bw3: bw3,
             dbw3: dbw3,
             bw2: bw2,
-            dbw2: dbw2
+            dbw2: dbw2,
+            sbc:sbc
         }
         dispatch(genrate(data))
     }
@@ -134,7 +136,9 @@ function Structure() {
             bw3: bw3,
             dbw3: dbw3,
             bw2: bw2,
-            dbw2: dbw2
+            dbw2: dbw2,
+            sbc:sbc,
+            no_of_s:no_of_s
         }
         dispatch(recheck(data))
     }
@@ -175,6 +179,8 @@ function Structure() {
         setVolume(structureData?.vol)
         setWatlevv(structureData?.watlevv)
         setWh(structureData?.wh)
+        setSbc(structureData?.sbc)
+        setNo_of_s(structureData?.no_of_s)
     },[structureData])
   return (
 
@@ -364,6 +370,14 @@ function Structure() {
             <div className='strucform'>
                 <p className='structlabel'>Aw</p>
                 <input className='structinput' value={aw} onChange={(e)=>setAw(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Sbc</p>
+                <input className='structinput' value={sbc} onChange={(e)=>setSbc(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>No_of_s</p>
+                <input className='structinput' value={no_of_s} onChange={(e)=>setNo_of_s(e.target.value)}/>
             </div>
             <div>
                 {structureData?.data?.map((item)=>{
