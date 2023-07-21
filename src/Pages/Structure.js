@@ -96,7 +96,8 @@ function Structure() {
             dbw3: dbw3,
             bw2: bw2,
             dbw2: dbw2,
-            sbc:sbc
+            sbc:sbc,
+            no_o_s:no_of_s
         }
         dispatch(genrate(data))
     }
@@ -138,7 +139,7 @@ function Structure() {
             bw2: bw2,
             dbw2: dbw2,
             sbc:sbc,
-            no_of_s:no_of_s
+            no_o_s:no_of_s
         }
         dispatch(recheck(data))
     }
@@ -180,7 +181,7 @@ function Structure() {
         setWatlevv(structureData?.watlevv)
         setWh(structureData?.wh)
         setSbc(structureData?.sbc)
-        setNo_of_s(structureData?.no_of_s)
+        setNo_of_s(structureData?.no_o_s)
     },[structureData])
   return (
 
