@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const url  = "http://3.111.147.208/"
+const url  = "https://conceptcelerio.com/"
 // Create a new Axios instance
 const token = localStorage.getItem('accessToken')
 const axiosInstance = axios.create({

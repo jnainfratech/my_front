@@ -5,6 +5,7 @@ import { Container } from '@mui/material'
 import StructureButton from '../Components/StructureButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { check, genrate, recheck } from '../Slice/strucureSlice'
+import CircularProgress from '@mui/material/CircularProgress';
 function Structure() {
     const [showInput, setShowInput] = useState(false);
     const [volume,setVolume] = useState(0)
@@ -176,7 +177,9 @@ function Structure() {
         setWh(structureData?.wh)
     },[structureData])
   return (
+
     <div>
+      
         <NavBar />
         <div className='structurehero'>
             <Container>
@@ -194,24 +197,35 @@ function Structure() {
                 <StructureButton />
             </div>
             <div>
+                { loading ? 
+                <Container>
+                    <div className='loader' >
+                        <CircularProgress />
+                    </div>
+                </Container> : 
                 <button className='strucnext' onClick={handleNextStep} >NEXT STEP</button>
+                }
             </div>
             </div>
         </Container>
+       
+           
+            
         <Container>
-            <div className='strucform'>
-                <p className='structlabel'>Volume</p>
-                <input className='structinput' onChange={(e)=>setVolume(e.target.value)} />
-            </div>
-            <div className='strucform'>
-                <p className='structlabel'>Staging Height</p>
-                <input  className='structinput' onChange={(e)=>setStageingHeight(e.target.value)} />
-            </div>
-            <div className='strucform'>
-                <p className='structlabel'>Elevation</p>
-                <input className='structinput' onChange={(e)=>setElevation(e.target.value)} />
-            </div>
+                <div className='strucform'>
+                    <p className='structlabel'>Volume</p>
+                    <input className='structinput' onChange={(e)=>setVolume(e.target.value)} />
+                </div>
+                <div className='strucform'>
+                    <p className='structlabel'>Staging Height</p>
+                    <input  className='structinput' onChange={(e)=>setStageingHeight(e.target.value)} />
+                </div>
+                <div className='strucform'>
+                    <p className='structlabel'>Elevation</p>
+                    <input className='structinput' onChange={(e)=>setElevation(e.target.value)} />
+                </div>
         </Container>
+        
         {showInput  &&  !loading && (
         <Container>
             <div className='strucform'>
@@ -360,9 +374,16 @@ function Structure() {
                     )
                 })}
             </div>
-            {structureData?.data?.length  ? 
+            {structureData?.data?.length  ?
             <div>
+                { loading  ? 
+                <Container>
+                    <div className='loader' >
+                        <CircularProgress />
+                    </div>
+                </Container> :
                 <button className='valapi' onClick={handleUpdate}>Update</button>
+                }        
             </div>
             : 
             <div>

@@ -102,12 +102,15 @@ const handleStructure = ()=>{
                         <div>
                             <p>About</p>
                         </div>
+                        { userData ? 
                         <div>
                             <p onClick={handleStructure}>Use US</p>
                         </div>
+                        : <div> </div> }
+                        
                         <div onClick={handlePlans}>
                             <p>Our Plans</p>
-                        </div>
+                        </div> 
                         <div className='navbtndiv'>
                             { userData  ?  
                                 <div> 
