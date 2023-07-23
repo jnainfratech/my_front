@@ -1,8 +1,8 @@
 .terrifcard{
     width: 360px;
     height: 534px;
-    border: 1px solid grey;
-   
+    /* border: 1px solid grey; */
+
 
 }
 .cardimg{
@@ -25,10 +25,35 @@
 }
 .cardprice{
     font-family: Montserrat;
-    font-size: 36px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 50px;
     letter-spacing: 1.5px;
     text-align: left;
     color: #FFFFFF;
+}
+.textcard{
+    padding:10px;
+}
+.carttxt{
+    font-weight: 700;
+}
+.buybtn{
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #0764E3;
+    text-decoration: none;
+    border: none;
+    color: white;
+    
+}
+.samerow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.txt{
+    font-weight: 700;
 }

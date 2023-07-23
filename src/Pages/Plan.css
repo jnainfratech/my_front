@@ -1,8 +1,9 @@
 .planheader{
     background-image: url('../Images/Plans.png');
     height: 360px;
-    width: 100%;
+    /* width: 100%; */
     background-repeat: no-repeat;
+    background-size: cover;
 }
 .plantxt{
     
@@ -41,6 +42,7 @@
     line-height: 32px;
     letter-spacing: 0.3125px;
     text-align: left;
+    font-weight: 600;
 
 }
 .planreturn{

@@ -5,7 +5,11 @@ import { Container } from '@mui/material'
 import StructureButton from '../Components/StructureButton'
 import { useDispatch, useSelector } from 'react-redux'
 import { check, genrate, recheck } from '../Slice/strucureSlice'
+import ReactPanZoom from 'react-image-pan-zoom-rotate'
 import CircularProgress from '@mui/material/CircularProgress';
+import stru from '../Images/section.png'
+import pln1 from '../Images/plan1.png'
+import pln2 from '../Images/plan2.png'
 function Structure() {
     const [showInput, setShowInput] = useState(false);
     const [volume,setVolume] = useState(0)
@@ -234,13 +238,15 @@ function Structure() {
         </Container>
         
         {showInput  &&  !loading && (
-        <Container>
+        <Container >
+    <div className='imagc'>
+        <div style={{width:"100%"}}>
             <div className='strucform'>
                 <p className='structlabel'>Wh</p>
                 <input className='structinput' value={wh} onChange={(e)=>setWh(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tbwt</p>
+                <p class Name='structlabel'>Tbwt</p>
                 <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
             </div>
             
@@ -405,7 +411,24 @@ function Structure() {
                 <button className='valapi' onClick={handleGenrate}>Genrate</button>
             </div>}
             
-            
+          
+           
+        </div>
+        <div className='imagecontainer'>
+                <ReactPanZoom
+                    image={stru}
+                    alt='section'
+                />
+                   <ReactPanZoom
+                    image={pln1}
+                    alt='plan'
+                />
+                   <ReactPanZoom
+                    image={pln2}
+                    alt='plan'
+                />
+        </div>
+        </div>
         </Container>
       )}
     </div>

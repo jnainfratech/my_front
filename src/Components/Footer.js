@@ -15,16 +15,16 @@ function Footer() {
       
       <div className='footContact'>
         <div className='footdetail'>
-          <EmailIcon></EmailIcon> <p className='footertxt'>exmaple.@gmail.com</p>
+          <EmailIcon style={{color:"#0764E3"}}></EmailIcon> <p className='footertxt'>exmaple.@gmail.com</p>
         </div>
         <div className='footdetail'>
-          <PhoneIcon></PhoneIcon> <p className='footertxt'>001-321421521</p>
+          <PhoneIcon style={{color:"#0764E3"}}></PhoneIcon> <p className='footertxt'>001-321421521</p>
         </div>
         
         
       </div>
       <div>
-        <p>© 2023 All Rights Reserved</p>
+        <p style={{color:"#0764E3",fontWeight:"700"}}>© 2023 All Rights Reserved</p>
       </div>
       {/* <div>
           <TwitterIcon />

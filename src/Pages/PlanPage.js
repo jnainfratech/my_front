@@ -9,28 +9,32 @@ const tempdata = [
     {
         type:"Normal",
         img :cardimg,
-        price:"20$",
-        marketing:"Marketing Strat",
-        compatitive:"Compatative Analysis",
-        roadmap:"Road Map",
-        monthly:"Month Reporting"
+        price:"10000",
+        coins:"22",
+        excel:"Designed Excel",
+        gadwg:"G.A Dwg",
+        rccdwg:"RCC Dwg",
+        staad:"Staad Input file"
     },
     {
-        type:"Normal",
+        type:"Medium",
         img :cardimg,
-        price:"20$",
-        marketing:"Marketing Strat",
-        compatitive:"Compatative Analysis",
-        roadmap:"Road Map",
-        monthly:"Month Reporting"
-    },    {
-        type:"Normal",
+        price:"25000",
+        coins:"60",
+        excel:"Designed Excel",
+        gadwg:"G.A Dwg",
+        rccdwg:"RCC Dwg",
+        staad:"Staad Input file"
+    },    
+    {
+        type:"Premium",
         img :cardimg,
-        price:"20$",
-        marketing:"Marketing Strat",
-        compatitive:"Compatative Analysis",
-        roadmap:"Road Map",
-        monthly:"Month Reporting"
+        price:"50000",
+        coins:"130",
+        excel:"Designed Excel",
+        gadwg:"G.A Dwg",
+        rccdwg:"RCC Dwg",
+        staad:"Staad Input file"
     }
 ]
 
@@ -54,7 +58,7 @@ function PlanPage() {
             <div>
                 <Container>
                     <p className='plantarrif'>Tarrif Plans</p>
-                    <p className='plantarrifsm'>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking.</p>
+                    <p className='plantarrifsm'> MCOIN is not just a digital wallet currency; it's a revolutionary concept designed to redefine the way structural engineers interact with their tools and optimize their workflow. Seamlessly integrated into our state-of-the-art structural engineering platform, MCOIN brings a whole new level of efficiency, convenience, and value to your engineering endeavors.</p>
                     <div className='planreturn'>
                     { 
                     tempdata.map((data)=>{

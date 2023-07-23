@@ -18,9 +18,11 @@
     "material-ui-popup-state": "^5.0.9",
     "react": "^18.0.19",
     "react-dom": "^18.2.0",
+    "react-image-pan-zoom-rotate": "^1.6.0",
     "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-type-animation": "^3.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

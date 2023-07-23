@@ -19,9 +19,43 @@ function RegisterPage() {
   const [email,setEmail] = useState("")
   const [conformPassword,setConformPassowrd] = useState()
 
+  const [nameError, setNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [conformPasswordError, setConformPasswordError] = useState('');
+
   const [token,setToken] = useState("")
 
   const handleRegister = ()=>{
+     // Reset previous error messages
+     setNameError('');
+     setPasswordError('');
+     setEmailError('');
+     setConformPasswordError('');
+
+       // Perform validation here
+    if (!name || name.length < 8 || !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(name)) {
+      setNameError('Username must be at least 8 characters and contain both alphabets and numbers.');
+      return;
+    }
+    if (!passowrd || !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]+$/.test(passowrd)) {
+      setPasswordError('Password must be at least 8 characters and contain both alphabets and numbers.');
+      return;
+    }
+    
+    if (!email) {
+      setEmailError('Please enter your email.');
+      return;
+    }
+
+    if (!conformPassword) {
+      setConformPasswordError('Please confirm your password.');
+      return;
+    }
+    if (passowrd !== conformPassword) {
+      setConformPasswordError('Passwords do not match.');
+      return;
+    }
 
     const  data =  {
       name:name,
@@ -67,18 +101,24 @@ const  handleLogin = ()=>{
               <div>
                 <p className='regusername'>USERNAME</p>
                 <input className='reginput' name={name} onChange={(e)=>setName(e.target.value)} ></input>
+                {nameError && <div className='error'>{nameError}</div>}
               </div>
               <div>
                 <p className='regusername'>EMAIL</p>
                 <input className='reginput' name={email} onChange={(e)=>setEmail(e.target.value)} ></input>
+                {emailError && <div className='error'>{emailError}</div>}
               </div>
               <div>
                 <p className='regusername'>PASSWORD</p>
-                <input className='reginput' name={passowrd} onChange={(e)=>setPassword(e.target.value)}></input>
+                <input className='reginput' name={passowrd} onChange={(e)=>setPassword(e.target.value)} type='password'></input>
+                {passwordError && <div className='error'>{passwordError}</div>}
               </div>
               <div>
                 <p className='regusername'>CONFIRM PASSWORD</p>
-                <input className='reginput'name={conformPassword} onChange={(e)=>setConformPassowrd(e.target.value)} ></input>
+                <input className='reginput'name={conformPassword} onChange={(e)=>setConformPassowrd(e.target.value)} type='password' ></input>
+                {conformPasswordError && (
+              <div className='error'>{conformPasswordError}</div>
+            )}
               </div>
               <div className='regbtncon'>
                 <button className='regbtn'onClick={handleRegister} >REGISTER</button>
