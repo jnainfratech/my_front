@@ -40,8 +40,8 @@ text-align: left;
  
     font-size: 10px;
     font-weight: 700;
-    line-height: 32px;
-    letter-spacing: 0.3125px;
+    /* line-height: 32px; */
+    /* letter-spacing: 0.3125px; */
     text-align: left;
     
 }
@@ -59,8 +59,17 @@ text-align: left;
     height: 35px;
     border-radius: 8px;
     border: none;
+    border: 1px solid #5ca1e1;
+    padding-left: 3px;
+    padding-right: 3px;
     
 }
+.reginput:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #0764E3; /* Change the border color when in focus */
+    box-shadow: 0 0 5px #0764E3;
+    padding: 3px; /* Add a box-shadow when in focus */
+  }
 .regbtncon{
     margin-top: 10px;
 }

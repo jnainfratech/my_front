@@ -27,17 +27,20 @@ function AboutUs() {
     }
 
     const useStyles = makeStyles((theme) => ({
+      
       activeTab: {
         color: '#0764E3', 
         border: 'none',
+        fontWeight:'700',
         '&.Mui-selected': {
-          borderBottom: `2px solid #0764E3`, // Change this to the color you want for the active tab bottom border
+          borderBottom: `2px solid #0764E3`,
+       // Change this to the color you want for the active tab bottom border
         },                                              // Change this to the color you want for the active tab text
       },
     }));
   const classes = useStyles();    
   return (
-    <div>
+    <div id="about">
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

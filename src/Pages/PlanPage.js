@@ -5,6 +5,7 @@ import './Plan.css'
 import { Container } from '@mui/material'
 import cardimg from '../Images/Dark.png'
 import TerrifCard from '../Components/TerrifCard'
+import Footer from '../Components/Footer'
 const tempdata = [
     {
         type:"Normal",
@@ -41,6 +42,7 @@ const tempdata = [
 function PlanPage() {
   return (
     <div>
+    <div>
         <div>
             <NavBar></NavBar>
             <div className='planheader'>
@@ -72,6 +74,12 @@ function PlanPage() {
             </div>
 
         </div>
+        
+    </div>
+    <div style={{marginTop:'100px'}}>
+        <Footer />
+    </div>
+    
     </div>
   )
 }

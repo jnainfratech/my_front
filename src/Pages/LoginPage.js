@@ -52,7 +52,7 @@ function LoginPage() {
                   <p className='loginusername'>Password</p>
                   <input className='logininput' type='password' onChange={(e)=>setPassword(e.target.value)}></input>
               </div>
-              <div>
+              <div style={{marginTop:"15px"}}>
                   <button className='loginbtn' onClick={handleLogin} >LOGIN</button>
               </div>
               <div>

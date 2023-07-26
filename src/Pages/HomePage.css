@@ -14,15 +14,20 @@
     left: 11.46%;
     right: 51.11%;
     top: 20.3%;
-    bottom: 38.81%;
+    bottom: auto;
 
+    border-radius: 15px;
     background: #FFFFFF;
+    mix-blend-mode: normal;
+    background-color: rgba(222, 222, 222, 0.25);
+    border: 0.1px solid;
+    box-shadow: 5px 5px #888888;
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 .HeroTitle{
     
@@ -38,7 +43,7 @@
 }
 .HeroBtn{
     width: 150px;
-    height: 40px;
+    height: 60px;
     color: white;
     background: #0764E3;
     border-radius: 5px;

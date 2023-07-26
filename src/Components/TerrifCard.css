@@ -3,14 +3,18 @@
     height: 534px;
     /* border: 1px solid grey; */
 
-
+    
 }
 .cardimg{
     background-image: url('../Images/Dark.png');
     background-repeat: no-repeat;
     height: 230px;
     width: 360px;
-    padding: 10px;
+    padding-top: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 16px;
+
     object-fit: cover;
 }
 .cardtxt{

@@ -57,28 +57,74 @@ letter-spacing: 1.333333969116211px;
 
 }
 .logininput{
-    width: 488px;
+    width: 480px;
     height: 32px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #5ca1e1;
+    padding-left: 3px;
+    padding-right: 3px;
+    
 
 }
 .loginbtn{
-    width: 490px;
+    width: 488px;
     height: 35px;
-    border-radius: 8px;
-    background-color: #0764E3;
-    color: white;
-    border-bottom: none;
-    cursor: pointer;
+    
+    border-radius: 4px;
+    background-color: #5ca1e1;
+    border: none;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    /* padding: 16px; */
+
+    transition: all 0.5s;
+    /* cursor: pointer; */
+    /* margin: 36px; */
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
 }
+.loginbtn{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+.loginbtn:after {
+    content: '>>';
+    position: absolute;
+    opacity: 0;  
+    /* top: 14px;
+    right: -20px; */
+    transition: 0.5s;
+    color: white;
+    margin-left: 21px;
+    /* left: 8px; */
+  }
+  
+.loginbtn:hover{
+    padding-right: 14px;
+    padding-left:8px;
+  }
+  
+.loginbtn:hover:after {
+    opacity: 1;
+    /* right: 20px; */
+    /* right: 10px; */
+  }
 .loginfp{
     font-size: 16px;
     font-weight: 600;
     line-height: 26px;
     letter-spacing: 0.25px;
+    padding: 2px;
     text-align: left;
     color:#0764E3;
     cursor: pointer;
 }
+.logininput:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #0764E3; /* Change the border color when in focus */
+    box-shadow: 0 0 5px #0764E3;
+    padding: 3px; /* Add a box-shadow when in focus */
+  }
 

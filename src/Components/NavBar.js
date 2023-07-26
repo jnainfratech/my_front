@@ -25,7 +25,7 @@ const options = [
     'Transaction',
     'Logout',
   ];
-function NavBar() {
+function NavBar({ handleAboutClick }) {
     const userData = useSelector((state) => state.user.userData);
 
     const [open, setOpen] = React.useState(false);
@@ -73,6 +73,7 @@ const handleHome = ()=>{
     navigate("/")
 }
 
+
 const navigate = useNavigate()
 const [token,setToken] = useState("")
 useEffect(()=>{
@@ -100,7 +101,7 @@ const handleStructure = ()=>{
                             <p className='text'>Home</p>
                         </div>
                         <div>
-                            <p>About</p>
+                            <p onClick={handleAboutClick}>About</p>
                         </div>
                         { userData ? 
                         <div>
