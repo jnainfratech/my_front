@@ -24,7 +24,7 @@ function Footer() {
         
       </div>
       <div>
-        <p style={{color:"#0764E3",fontWeight:"700"}}>© 2023 All Rights Reserved By JNAINFRACTECH</p>
+        <p style={{color:"#0764E3",fontWeight:"700"}}>© 2023 All Rights Reserved By JNAINFRATECH LLP</p>
       </div>
       {/* <div>
           <TwitterIcon />
