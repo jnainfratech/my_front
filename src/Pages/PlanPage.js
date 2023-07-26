@@ -60,7 +60,7 @@ function PlanPage() {
             <div>
                 <Container>
                     <p className='plantarrif'>Tarrif Plans</p>
-                    <p className='plantarrifsm'> MCOIN is not just a digital wallet currency; it's a revolutionary concept designed to redefine the way structural engineers interact with their tools and optimize their workflow. Seamlessly integrated into our state-of-the-art structural engineering platform, MCOIN brings a whole new level of efficiency, convenience, and value to your engineering endeavors.</p>
+                    <p className='plantarrifsm'> MPOINTS is not just a digital wallet currency; it's a revolutionary concept designed to redefine the way structural engineers interact with their tools and optimize their workflow. Seamlessly integrated into our state-of-the-art structural engineering platform, MPOINTS brings a whole new level of efficiency, convenience, and value to your engineering endeavors.</p>
                     <div className='planreturn'>
                     { 
                     tempdata.map((data)=>{

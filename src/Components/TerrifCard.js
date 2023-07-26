@@ -18,7 +18,7 @@ function TerrifCard({data}) {
         <div className='cardimg'>
             <p className='cardtxt'>{data.type}</p>
             <p className='cardprice'> ₹{data.price}</p>
-            <p className='cardprice'> {data.coins} MCOINS</p>
+            <p className='cardprice'> {data.coins} MPOINTS</p>
         </div>
         <div className="textcard" >
             <p className='carttxt'>Deliverables</p>
