@@ -18,7 +18,7 @@ function Footer() {
           <EmailIcon style={{color:"#0764E3"}}></EmailIcon> <p className='footertxt'>exmaple.@gmail.com</p>
         </div>
         <div className='footdetail'>
-          <PhoneIcon style={{color:"#0764E3"}}></PhoneIcon> <p className='footertxt'>001-321421521</p>
+          <PhoneIcon style={{color:"#0764E3"}}></PhoneIcon> <p className='footertxt'>001-32142152</p>
         </div>
         
         
