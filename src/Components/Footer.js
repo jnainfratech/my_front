@@ -15,16 +15,14 @@ function Footer() {
       
       <div className='footContact'>
         <div className='footdetail'>
-          <EmailIcon style={{color:"#0764E3"}}></EmailIcon> <p className='footertxt'>exmaple.@gmail.com</p>
+          <EmailIcon style={{color:"#0764E3"}}></EmailIcon> <p className='footertxt'>support@conceptcelerio.in  </p>
         </div>
-        <div className='footdetail'>
-          <PhoneIcon style={{color:"#0764E3"}}></PhoneIcon> <p className='footertxt'>001-32142152</p>
-        </div>
+      
         
         
       </div>
       <div>
-        <p style={{color:"#0764E3",fontWeight:"700"}}>© 2023 All Rights Reserved By JNAINFRATECH LLP</p>
+        <p style={{color:"#0764E3",fontWeight:"400"}}>© 2023 All Rights Reserved By M/s JNAINFRATECH LLP</p>
       </div>
       {/* <div>
           <TwitterIcon />
