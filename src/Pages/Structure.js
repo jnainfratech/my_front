@@ -284,7 +284,7 @@ function Structure() {
             </div>
             <div className='strucform'>
                 <p className='structlabel'>Bw4</p>
-                <input className='structinput' value={bw4} onChange={(e)=>setBw(e.target.value)} />
+                <input className='structinput' value={bw4} onChange={(e)=>setBw4(e.target.value)} />
             </div>
             <div className='strucform'>
                 <p className='structlabel'>Tl</p>
