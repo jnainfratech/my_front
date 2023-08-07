@@ -246,7 +246,7 @@ function Structure() {
                 <input className='structinput' value={wh} onChange={(e)=>setWh(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p class Name='structlabel'>Tbwt</p>
+                <p className='structlabel'>Tbwt</p>
                 <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
             </div>
             
@@ -378,10 +378,7 @@ function Structure() {
                 <p className='structlabel'>Aw</p>
                 <input className='structinput' value={aw} onChange={(e)=>setAw(e.target.value)}/>
             </div>
-            <div className='strucform'>
-                <p className='structlabel'>Sbc</p>
-                <input className='structinput' value={sbc} onChange={(e)=>setSbc(e.target.value)}/>
-            </div>
+        
             <div className='strucform'>
                 <p className='structlabel'>No_of_s</p>
                 <input className='structinput' value={no_of_s} onChange={(e)=>setNo_of_s(e.target.value)}/>
