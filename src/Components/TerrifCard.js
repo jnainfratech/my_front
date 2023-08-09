@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './TerrifCard.css'
 import { Button } from '@mui/material'
 
@@ -29,7 +29,23 @@ function TerrifCard({data}) {
     e.preventDefault()
 
   }
+  const [paymentUrl, setPaymentUrl] = useState('');
+  useEffect(()=>{
 
+
+    setPaymentUrl(url)
+   
+  },[url])
+  useEffect(() => {
+    if (paymentUrl) {
+      // Open the payment page in a new tab when paymentUrl is available
+      const paymentWindow = window.open(paymentUrl, '_blank');
+      if (!paymentWindow) {
+        console.error('Popup blocked by browser');
+      }
+    }
+    
+  }, [paymentUrl]);
   return (
     <div className='terrifcard'> 
         <div className='cardimg'>

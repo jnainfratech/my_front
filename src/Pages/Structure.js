@@ -51,12 +51,12 @@ function Structure() {
     const[tdf,setTdf] = useState(0)
     const[aw,setAw] = useState(0)
     const[no_of_s,setNo_of_s] = useState(0)
-    const [seismiczone,setSeismiczone] =  useState(0)
-    const [importencefactor,setImportencefactor] = useState(0)
-    const [reductionfactor,setReductionfactor] =  useState(0)
-    const [basic_wind_speed,setBasic_wind_speed] = useState(0)
-    const [wind_k1,setWind_k1] = useState(0)
-    const [wind_k3,setWind_k3] = useState(0)
+    const [seismiczone,setSeismiczone] =  useState(0.16)
+    const [importencefactor,setImportencefactor] = useState(1.25)
+    const [reductionfactor,setReductionfactor] =  useState(2.45)
+    const [basic_wind_speed,setBasic_wind_speed] = useState(50)
+    const [wind_k1,setWind_k1] = useState(1)
+    const [wind_k3,setWind_k3] = useState(1)
     const [project_name,setProject_name] = useState("")
     const [doc_no,setDoc_no] = useState("")
     const [company_name,setCompany_name] = useState("")
@@ -275,7 +275,7 @@ function Structure() {
                         <CircularProgress />
                     </div>
                 </Container> : 
-                <button className='strucnext' onClick={handleNextStep} >NEXT STEP</button>
+                <button className='strucnext' disabled={showInput} onClick={handleNextStep} >NEXT STEP</button>
                 }
             </div>
             </div>
@@ -285,15 +285,15 @@ function Structure() {
             
         <Container>
                 <div className='strucform'>
-                    <p className='structlabel'>Volume</p>
+                    <p className='structlabel'>Volume (KL)</p>
                     <input className='structinput' onChange={(e)=>setVolume(e.target.value)} />
                 </div>
                 <div className='strucform'>
-                    <p className='structlabel'>Staging Height</p>
+                    <p className='structlabel'>Staging Height (mm)</p>
                     <input  className='structinput' onChange={(e)=>setStageingHeight(e.target.value)} />
                 </div>
                 <div className='strucform'>
-                    <p className='structlabel'>Elevation</p>
+                    <p className='structlabel'>Elevation (m)</p>
                     <input className='structinput' onChange={(e)=>setElevation(e.target.value)} />
                 </div>
         </Container>
@@ -303,145 +303,145 @@ function Structure() {
     <div className='imagc'>
         <div style={{width:"100%"}}>
             <div className='strucform'>
-                <p className='structlabel'>Wh</p>
+                <p className='structlabel'>Wh (mm)</p>
                 <input className='structinput' value={wh} onChange={(e)=>setWh(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tbwt</p>
+                <p className='structlabel'>Tbwt (mm)</p>
                 <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
             </div>
             
             <div className='strucform'>
-                <p className='structlabel'>Dtbw</p>
+                <p className='structlabel'>Dtbw (mm)</p>
                 <input className='structinput'value={dtbw} onChange={(e)=>setDtbw(e.target.value)}/>
             </div>
             
             <div className='strucform'>
-                <p className='structlabel'>Twb</p>
+                <p className='structlabel'>Tbw (mm)</p>
                 <input className='structinput' value={twb} onChange={(e)=>setTwb(e.target.value)}/>
             </div>
             
             <div className='strucform'>
-                <p className='structlabel'>r</p>
+                <p className='structlabel'>r (mm)</p>
                 <input className='structinput' value={r} onChange={(e)=>setR(e.target.value)}/>
             </div>
             
 
             <div className='strucform'>
-                <p className='structlabel'>Ncr</p>
+                <p className='structlabel'>Ncr (no of columns)</p>
                 <input className='structinput' value={ncr} onChange={(e)=>setNcr(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dl</p>
+                <p className='structlabel'>Dl (mm)</p>
                 <input className='structinput' value={dl} onChange={(e)=>setDl(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Nl</p>
+                <p className='structlabel'>Nl (no of tie beams)</p>
                 <input className='structinput' value={nl} onChange={(e)=>setNl(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dbw4</p>
+                <p className='structlabel'>Dbw4 (mm)</p>
                 <input className='structinput' value={dbw4} onChange={(e)=>setDbw4(e.target.value)}  />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Bw4</p>
+                <p className='structlabel'>Bw4 (mm)</p>
                 <input className='structinput' value={bw4} onChange={(e)=>setBw4(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tl</p>
+                <p className='structlabel'>Tl (mm)</p>
                 <input className='structinput' value={tl}  onChange={(e)=>setTl(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Ver</p>
+                <p className='structlabel'>Ver (mm)</p>
                 <input className='structinput' value={ver} onChange={(e)=>setVer(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dbw3</p>
+                <p className='structlabel'>Dbw3 (mm)</p>
                 <input className='structinput' value={dbw3} onChange={(e)=>setDbw3(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Bw3</p>
+                <p className='structlabel'>Bw3 (mm)</p>
                 <input className='structinput' value={bw3} onChange={(e)=>setBw3(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdom1</p>
+                <p className='structlabel'>Tdom1 (mm)</p>
                 <input className='structinput' value={tdom1} onChange={(e)=>setTdom1(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdom2</p>
+                <p className='structlabel'>Tdom2 (mm)</p>
                 <input className='structinput' value={tdom2}  onChange={(e)=>setTdom2(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdom3</p>
+                <p className='structlabel'>Tdom3 (mm)</p>
                 <input className='structinput' value={tdom3}  onChange={(e)=>setTdom3(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tcon</p>
+                <p className='structlabel'>Tcon (mm)</p>
                 <input className='structinput' value={tcon} onChange={(e)=>setTcon(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Bw2</p>
+                <p className='structlabel'>Bw2 (mm)</p>
                 <input className='structinput'  value={bw2} onChange={(e)=>setBw2(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dbw2</p>
+                <p className='structlabel'>Dbw2 (mm)</p>
                 <input className='structinput' value={dbw2} onChange={(e)=>setDbw2(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Cr</p>
+                <p className='structlabel'>Cr (mm)</p>
                 <input className='structinput' value={cr}  onChange={(e)=>setCr(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Harch1</p>
+                <p className='structlabel'>Harch1 (mm)</p>
                 <input className='structinput' value={harch1} onChange={(e)=>setHarch1(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Parch2</p>
+                <p className='structlabel'>Parch2 (mm)</p>
                 <input className='structinput' value={parch2} onChange={(e)=>setParch2(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Watlevv</p>
+                <p className='structlabel'>Watlevv (mm)</p>
                 <input className='structinput' value={watlevv}  onChange={(e)=>setWatlevv(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Ttb</p>
+                <p className='structlabel'>Ttb (mm)</p>
                 <input className='structinput' value={ttb}  onChange={(e)=>setTtb(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dttb</p>
+                <p className='structlabel'>Dttb (mm)</p>
                 <input className='structinput' value={dttb}  onChange={(e)=>setDttb(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>T3</p>
+                <p className='structlabel'>T3 (mm)</p>
                 <input className='structinput' value={t3} onChange={(e)=>setT3(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Df</p>
+                <p className='structlabel'>Df (mm)</p>
                 <input className='structinput' value={df} onChange={(e)=>setDf(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Dbw</p>
+                <p className='structlabel'>Dbw (mm)</p>
                 <input className='structinput' value={dbw} onChange={(e)=>setDbw(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Bw</p>
+                <p className='structlabel'>Bw (mm)</p>
                 <input className='structinput' value={bw} onChange={(e)=>setBw(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Sbc</p>
+                <p className='structlabel'>Sbc (T/m2)</p>
                 <input className='structinput' value={sbc} onChange={(e)=>setSbc(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdf</p>
+                <p className='structlabel'>Tdf (mm)</p>
                 <input className='structinput' value={tdf} onChange={(e)=>setTdf(e.target.value)} />
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Aw</p>
+                <p className='structlabel'>Aw (mm)</p>
                 <input className='structinput' value={aw} onChange={(e)=>setAw(e.target.value)}/>
             </div>
         
             <div className='strucform'>
-                <p className='structlabel'>No_of_s</p>
+                <p className='structlabel'>No_of_steps in each stair </p>
                 <input className='structinput' value={no_of_s} onChange={(e)=>setNo_of_s(e.target.value)}/>
             </div>
             <div className='strucform'>
@@ -515,15 +515,15 @@ function Structure() {
                 <input className='structinput' value={title} onChange={(e)=>setTitle(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Revision</p>
+                <p className='structlabel'>Revision number</p>
                 <input className='structinput' value={Rev} onChange={(e)=>setRev(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Design</p>
+                <p className='structlabel'>Designed by</p>
                 <input className='structinput' value={design} onChange={(e)=>setDesign(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Check</p>
+                <p className='structlabel'>Checked by</p>
                 <input className='structinput' value={check1} onChange={(e)=>setCheck1(e.target.value)}/>
             </div>
             <div className='strucform'>
@@ -553,7 +553,7 @@ function Structure() {
             </div>
             : 
             <div>
-                <button className='valapi' onClick={handleGenrate}>Genrate</button>
+                <button className='valapi' onClick={handleGenrate}>Generate</button>
             </div>}
             
           
