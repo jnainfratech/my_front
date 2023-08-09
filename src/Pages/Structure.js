@@ -10,6 +10,8 @@ import CircularProgress from '@mui/material/CircularProgress';
 import stru from '../Images/section.png'
 import pln1 from '../Images/plan1.png'
 import pln2 from '../Images/plan2.png'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+
 function Structure() {
     const [showInput, setShowInput] = useState(false);
     const [volume,setVolume] = useState(0)
@@ -49,6 +51,21 @@ function Structure() {
     const[tdf,setTdf] = useState(0)
     const[aw,setAw] = useState(0)
     const[no_of_s,setNo_of_s] = useState(0)
+    const [seismiczone,setSeismiczone] =  useState(0)
+    const [importencefactor,setImportencefactor] = useState(0)
+    const [reductionfactor,setReductionfactor] =  useState(0)
+    const [basic_wind_speed,setBasic_wind_speed] = useState(0)
+    const [wind_k1,setWind_k1] = useState(0)
+    const [wind_k3,setWind_k3] = useState(0)
+    const [project_name,setProject_name] = useState("")
+    const [doc_no,setDoc_no] = useState("")
+    const [company_name,setCompany_name] = useState("")
+    const [title,setTitle] = useState("")
+    const [Rev,setRev] = useState("")
+    const [design,setDesign] = useState("")
+    const [check1,setCheck1] = useState("")
+    const [date,setDate] = useState("")
+
 
 
     const dispatch =  useDispatch()
@@ -101,7 +118,23 @@ function Structure() {
             bw2: bw2,
             dbw2: dbw2,
             sbc:sbc,
-            no_o_s:no_of_s
+            no_o_s:no_of_s,
+            Category:selectedValue,
+            soil_type:soiltype,
+            seismiczone: seismiczone,
+            importencefactor: importencefactor,
+            reductionfactor: reductionfactor,
+            basic_wind_speed: basic_wind_speed,
+            wind_k1: wind_k1,
+            wind_k3: wind_k3,
+            project_name:project_name,
+            doc_no: doc_no,
+            company_name: company_name,
+            title: title,
+            Rev: Rev,
+            design: design,
+            check: check1,
+            date: date
         }
         dispatch(genrate(data))
     }
@@ -143,7 +176,25 @@ function Structure() {
             bw2: bw2,
             dbw2: dbw2,
             sbc:sbc,
-            no_o_s:no_of_s
+            no_o_s:no_of_s,
+            Category:selectedValue,
+            soil_type:soiltype,
+            seismiczone: seismiczone,
+            importencefactor: importencefactor,
+            reductionfactor: reductionfactor,
+            basic_wind_speed: basic_wind_speed,
+            wind_k1: wind_k1,
+            wind_k3: wind_k3,
+            project_name:project_name,
+            doc_no: doc_no,
+            company_name: company_name,
+            title: title,
+            Rev: Rev,
+            design: design,
+            check: check1,
+            date: date
+
+
         }
         dispatch(recheck(data))
     }
@@ -187,6 +238,16 @@ function Structure() {
         setSbc(structureData?.sbc)
         setNo_of_s(structureData?.no_o_s)
     },[structureData])
+
+    const [selectedValue, setSelectedValue] = useState('');
+    const [soiltype,setSoiltype] = useState('');
+
+    const handleChange = (event) => {
+      setSelectedValue(event.target.value);
+    };
+    const handleSoil = (event)=>{
+        setSoiltype(event.target.value)
+    }
   return (
 
     <div>
@@ -383,6 +444,93 @@ function Structure() {
                 <p className='structlabel'>No_of_s</p>
                 <input className='structinput' value={no_of_s} onChange={(e)=>setNo_of_s(e.target.value)}/>
             </div>
+            <div className='strucform'>
+                <p className='structlabel'>Category</p>
+                <FormControl style={{  width: "400px",height:"100px"}}>
+                    <InputLabel>Select an option</InputLabel>
+                    <Select value={selectedValue} onChange={handleChange}>
+                        <MenuItem value="">
+                        <em>None</em>
+                        </MenuItem>
+                        <MenuItem value="Category-1">Category-1</MenuItem>
+                        <MenuItem value="Category-2">Category-2</MenuItem>
+                        <MenuItem value="Category-3">Category-3</MenuItem>
+                        <MenuItem value="Category-4">Category-4</MenuItem>
+                    </Select>
+                </FormControl>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Seismiczone</p>
+                <input className='structinput' value={seismiczone} onChange={(e)=>setSeismiczone(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Importencefactor</p>
+                <input className='structinput' value={importencefactor} onChange={(e)=>setImportencefactor(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Reductionfactorfactor</p>
+                <input className='structinput' value={reductionfactor} onChange={(e)=>setReductionfactor(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Soil Type</p>
+                <FormControl style={{  width: "400px"}}>
+                    <InputLabel>Select an option</InputLabel>
+                    <Select value={soiltype} onChange={handleSoil}>
+                        <MenuItem value="" style={{height:"100%"}}>
+                        <em>None</em>
+                        </MenuItem>
+                        <MenuItem value="Soft soil">Soft soil</MenuItem>
+                        <MenuItem value="Rocky">Rocky</MenuItem>
+                        <MenuItem value="Medium soil">Medium soil</MenuItem>
+                        
+                    </Select>
+                </FormControl>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Basic Wind Speed</p>
+                <input className='structinput' value={basic_wind_speed} onChange={(e)=>setBasic_wind_speed(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Wind k1 </p>
+                <input className='structinput' value={wind_k1} onChange={(e)=>setWind_k1(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Wind k3 </p>
+                <input className='structinput' value={wind_k3} onChange={(e)=>setWind_k3(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Project name</p>
+                <input className='structinput' value={project_name} onChange={(e)=>setProject_name(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Document number</p>
+                <input className='structinput' value={doc_no} onChange={(e)=>setDoc_no(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Company Name</p>
+                <input className='structinput' value={company_name} onChange={(e)=>setCompany_name(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Title</p>
+                <input className='structinput' value={title} onChange={(e)=>setTitle(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Revision</p>
+                <input className='structinput' value={Rev} onChange={(e)=>setRev(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Design</p>
+                <input className='structinput' value={design} onChange={(e)=>setDesign(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Check</p>
+                <input className='structinput' value={check1} onChange={(e)=>setCheck1(e.target.value)}/>
+            </div>
+            <div className='strucform'>
+                <p className='structlabel'>Date</p>
+                <input className='structinput' value={date} onChange={(e)=>setDate(e.target.value)}/>
+            </div>
+
             <div>
                 {structureData?.data?.map((item)=>{
                     return(

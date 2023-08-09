@@ -4,6 +4,8 @@ import { Button } from '@mui/material'
 
 import { makeStyles } from '@material-ui/core/styles';
 import DoneIcon from '@mui/icons-material/Done';
+import { useDispatch, useSelector } from 'react-redux';
+import { initateTrans } from '../Slice/transactionSlice';
 
 const useStyles = makeStyles({
   customIcon: {
@@ -12,6 +14,21 @@ const useStyles = makeStyles({
 });
 function TerrifCard({data}) {
     console.log("data in card",data)
+    const dispatch =  useDispatch()
+    const url  = useSelector(state=>state.trans?.transData?.URL?.data?.instrument_response?.redirect_info?.url)
+
+
+  const handlePayment = (type,price,coins,e)=>{
+    console.log("payment genrate===================================>")
+    const data = {
+      name:type,
+      price:price,
+      
+    }
+    dispatch(initateTrans(data))
+    e.preventDefault()
+
+  }
 
   return (
     <div className='terrifcard'> 
@@ -43,7 +60,7 @@ function TerrifCard({data}) {
             </div>  
         </div>
         <div>
-          <button className='buybtn'> BUY NOW</button>
+          <button className='buybtn' onClick={e=>handlePayment(data.type,data.price,data.coins,e)}> BUY NOW</button>
         </div>
         
     </div>
