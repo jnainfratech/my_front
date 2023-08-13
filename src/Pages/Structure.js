@@ -351,10 +351,7 @@ function Structure() {
                 <p className='structlabel'>Tl (mm)</p>
                 <input className='structinput' value={tl}  onChange={(e)=>setTl(e.target.value)}/>
             </div>
-            <div className='strucform'>
-                <p className='structlabel'>Ver (mm)</p>
-                <input className='structinput' value={ver} onChange={(e)=>setVer(e.target.value)}/>
-            </div>
+         
             <div className='strucform'>
                 <p className='structlabel'>Dbw3 (mm)</p>
                 <input className='structinput' value={dbw3} onChange={(e)=>setDbw3(e.target.value)} />
