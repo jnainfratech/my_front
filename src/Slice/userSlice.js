@@ -26,9 +26,11 @@ export const fetchUserData = createAsyncThunk(
 export const logoutUser =  createAsyncThunk(
   'user/logout',
   async()=>{
-      localStorage.removeItem('accessToken')
+      sessionStorage.removeItem('accessToken')
   }
   )
+
+  
   const userSlice = createSlice({
     name: 'user',
     initialState: {
@@ -51,6 +53,7 @@ export const logoutUser =  createAsyncThunk(
         console.log("my payload",action.payload)
           state.loading = false;
           state.userData = action.payload.data;
+          // localStorage.setItem('accessToken', action.payload.data.access_token);
           localStorage.setItem('accessToken', action.payload.data.access_token);
           state.status = action.payload.status;
           
@@ -66,7 +69,8 @@ export const logoutUser =  createAsyncThunk(
         .addCase(loginUser.fulfilled,(state,action)=>{
           state.loading = false;
           state.userData = action.payload.data;
-          localStorage.setItem('accessToken',action.payload.data.access_token);
+          // localStorage.setItem('accessToken',action.payload.data.access_token);
+          localStorage.setItem('accessToken', action.payload.data.access_token);
           state.status = action.payload.status;
          
         })

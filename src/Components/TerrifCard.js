@@ -13,64 +13,69 @@ const useStyles = makeStyles({
   },
 });
 function TerrifCard({data}) {
-    console.log("data in card",data)
+    // console.log("data in card",data)
     const dispatch =  useDispatch()
     const url  = useSelector(state=>state.trans?.transData?.URL?.data?.instrument_response?.redirect_info?.url)
 
 
-  const handlePayment = (type,price,coins,e)=>{
-    console.log("payment genrate===================================>")
-    const data = {
-      name:type,
-      price:price,
-      
-    }
-    dispatch(initateTrans(data))
-    e.preventDefault()
+    const [paymentWindow, setPaymentWindow] = useState(null);
 
-  }
-  const [paymentUrl, setPaymentUrl] = useState('');
-  useEffect(()=>{
-
-
-    setPaymentUrl(url)
-   
-  },[url])
   useEffect(() => {
-    if (paymentUrl) {
+      if (url && !paymentWindow) {
+        // Open the payment page in a new popup window when paymentUrl is available
+        const newPaymentWindow = window.open(url, '_blank', 'width=800,height=600');
+        if (!newPaymentWindow) {
+          console.error('Popup blocked by browser');
+        } else {
+          setPaymentWindow(newPaymentWindow);
+        }
+      }
+    }, [url, paymentWindow]);
+  
+    const handlePayment = (type, price, coins, e) => {
+      console.log('payment generate');
+      const data = {
+        name: type,
+        price: price,
+      };
+      dispatch(initateTrans(data));
+      e.preventDefault();
+    };
+  useEffect(() => {
+    if (url) {
       // Open the payment page in a new tab when paymentUrl is available
-      const paymentWindow = window.open(paymentUrl, '_blank');
+      const paymentWindow = window.open(url, '_blank');
       if (!paymentWindow) {
         console.error('Popup blocked by browser');
       }
     }
     
-  }, [paymentUrl]);
+  }, [url]);
   return (
     <div className='terrifcard'> 
         <div className='cardimg'>
-            <p className='cardtxt'>{data.type}</p>
-            <p className='cardprice'> ₹{data.price}</p>
-            <p className='cardprice'> {data.coins} MPOINTS</p>
+            <p className='cardtxt'>{data?.type}</p>
+            <p className='cardprice'> ₹{data?.price}</p>
+            <p className='cardprice'> {data?.coins} MPOINTS</p>
         </div>
         <div className="textcard" >
             <p className='carttxt'>Deliverables</p>
             <div>
               <div className='samerow'>
                 <DoneIcon style={{color:"#0764E3"}}/> 
-                <p className='txt'>{data.excel}</p>
+                <p className='txt'>{data?.excel}</p>
               </div>
               <div className='samerow'>
                 <DoneIcon style={{color:"#0764E3"}} />
-                <p className='txt'>{data.rccdwg}</p>
+                <p className='txt'>{data?.rccdwg}</p>
               </div>
               <div className='samerow'>
                 <DoneIcon style={{color:"#0764E3"}} />
-                <p className='txt'>{data.gadwg}</p>
+                <p className='txt'>{data?.gadwg}</p>
               </div>
               <div className='samerow'>
                 <DoneIcon style={{color:"#0764E3"}} />
-                <p className='txt'>{data.staad}</p>
+                <p className='txt'>{data?.staad}</p>
               </div>
               
             </div>  

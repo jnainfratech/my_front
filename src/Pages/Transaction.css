@@ -42,3 +42,21 @@
     text-align: left;
 
 }
+
+.pass{
+    color: green;
+    font-weight: 600;
+}
+
+.fail {
+    color:red;
+    font-weight: 600;
+}
+.statusbtn{
+    border:none;
+    background-color: #0764E3;
+    color: white;
+    cursor: pointer;
+    height: 25px;
+    border-radius: 5px;
+}

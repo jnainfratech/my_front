@@ -63,7 +63,7 @@ function PlanPage() {
                   
                     <div className='planreturn'>
                     { 
-                    tempdata.map((data)=>{
+                    tempdata?.map((data)=>{
                       
                         return <TerrifCard data={data} />
                         

@@ -6,7 +6,7 @@ const url  = "https://conceptcelerio.com/"
 // Create a new Axios instance
 const token = localStorage.getItem('accessToken')
 const axiosInstance = axios.create({
-  baseURL: url, // Set the base URL for all requests
+  baseURL: localurl, // Set the base URL for all requests
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${token}`, // Set default headers

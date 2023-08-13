@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Transaction.css'
 import NavBar from '../Components/NavBar'
 import { Container } from '@mui/material'
@@ -10,8 +10,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { checkStatusTransaction, getUserTransaction } from '../Slice/transactionSlice';
 function TransactionPage() {
+  const data = useSelector(state=>state?.trans?.userData?.data)
+  const handleAction = (e,id)=>{
+    console.log("my id ", id)
+    dispatch(checkStatusTransaction(id))
+    dispatch(getUserTransaction())
+  }
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getUserTransaction())
+  },[])
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
           backgroundColor: theme.palette.common.black,
@@ -32,17 +43,7 @@ function TransactionPage() {
         },
       }));
       
-      function createData(name, calories, fat, carbs, protein) {
-        return { name, calories, fat, carbs, protein };
-      }
-      
-      const rows = [
-        createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-        createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-        createData('Eclair', 262, 16.0, 24, 6.0),
-        createData('Cupcake', 305, 3.7, 67, 4.3),
-        createData('Gingerbread', 356, 16.0, 49, 3.9),
-      ];
+    
   return (
     <div>
         <NavBar />
@@ -63,23 +64,26 @@ function TransactionPage() {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                         <TableRow>
-                            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-                            <StyledTableCell align="right">Calories</StyledTableCell>
-                            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-                            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-                            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+                            <StyledTableCell align="right">TRANSACTION ID</StyledTableCell>
+                            <StyledTableCell align="right">MERCHENT ID</StyledTableCell>
+                            <StyledTableCell align="right">NAME</StyledTableCell>
+                            <StyledTableCell align="right">STATUS</StyledTableCell>
+                            <StyledTableCell align="right">PRICE</StyledTableCell>
+                            <StyledTableCell align="right">DATE</StyledTableCell>
+                            <StyledTableCell align="right">ACTION</StyledTableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
-                        {rows.map((row) => (
-                            <StyledTableRow key={row.name}>
-                            <StyledTableCell component="th" scope="row">
-                                {row.name}
-                            </StyledTableCell>
-                            <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                            <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                            <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                            <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                        {data?.map((row) => (
+                            <StyledTableRow>
+                        
+                            <StyledTableCell align="right">{row.id}</StyledTableCell>
+                            <StyledTableCell align="right">{row.merchant_id}</StyledTableCell>
+                            <StyledTableCell align="right">{row.name}</StyledTableCell>
+                            <StyledTableCell align="right">{row.status ==="Successful" ? <p className='pass'>SUCCESS</p>  :  <p className='fail'>FAIL</p>  }</StyledTableCell>
+                            <StyledTableCell align="right">{row.price}</StyledTableCell>
+                            <StyledTableCell align="right">{row.date_created.split("T")[0]}</StyledTableCell>
+                            <StyledTableCell align="right"><button className='statusbtn' onClick={(e)=>handleAction(e,row.id)}>Check status</button> </StyledTableCell>
                             </StyledTableRow>
                         ))}
                         </TableBody>

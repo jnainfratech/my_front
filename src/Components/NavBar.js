@@ -47,6 +47,10 @@ function NavBar({ handleAboutClick }) {
   
       setOpen(false);
     };
+
+    const handleTransaction = ()=>{
+        navigate('/Mytransaction')
+    }
   
     function handleListKeyDown(event) {
       if (event.key === 'Tab') {
@@ -162,10 +166,11 @@ const handleStructure = ()=>{
 
                                                         <div className='dropdownitem'>
                                                             <div>
-                                                                <AccountBalanceWalletIcon />
+                                                                <AccountBalanceWalletIcon /> 
                                                             </div>
-                                                            <div>
-                                                                <MenuItem onClick={handleClose}>Wallet</MenuItem>
+                                                            <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                                                                <MenuItem onClick={handleClose}>M-Points  {userData.map} </MenuItem>
+                                                                <div></div>
                                                             </div>
                                                             
                                                         </div>    
@@ -183,7 +188,7 @@ const handleStructure = ()=>{
                                                                 <PaidIcon />
                                                             </div>
                                                             <div>
-                                                                <MenuItem onClick={handleClose}>My Transaction</MenuItem>
+                                                                <MenuItem onClick={handleTransaction}>My Transaction</MenuItem>
                                                             </div>
                                                             
                                                         </div>
