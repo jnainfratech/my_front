@@ -62,7 +62,7 @@ function RegisterPage() {
       email:email,
       password:passowrd
     }
-    dispatch(fetchUserData(data))
+    // dispatch(fetchUserData(data))
 
   }
   useEffect(() => {
