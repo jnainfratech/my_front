@@ -14,6 +14,7 @@ export const check = createAsyncThunk(
 export const recheck = createAsyncThunk(
     'structure/recheck',
     async(data)=>{
+        console.log("mydata============>en recheck",data)
         const response = axiosInstance.post('/api/recheck',data)
         return response
     }
