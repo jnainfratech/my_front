@@ -7,6 +7,7 @@ import PlanPage from './Pages/PlanPage';
 import TransactionPage from './Pages/TransactionPage';
 import ProfilePage from './Pages/ProfilePage';
 import Structure from './Pages/Structure';
+import VideoPlayer from './Pages/VideoPlayer';
 
 
 
@@ -30,6 +31,8 @@ function App() {
             <Route path = '/Myprofile' Component={ProfilePage} />
 
             <Route path = '/Structure' Component={Structure} />
+
+            <Route path= '/video' Component={VideoPlayer} />
 
         </Routes>
       </div>

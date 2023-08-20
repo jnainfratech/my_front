@@ -43,8 +43,13 @@
 
 
 }
+.voldiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .structinput{
-    width: 400px;
+    width: 250px;
     height: 30px;
     border-radius: 5px;
 }

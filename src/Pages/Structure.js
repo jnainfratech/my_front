@@ -13,6 +13,10 @@ import pln2 from '../Images/plan2.png'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 function Structure() {
+    const structureData = useSelector((state)=>state.strcture?.structureData)
+    const [processdata, setProcessdata] = useState([]);
+
+
     const [showInput, setShowInput] = useState(false);
     const [volume,setVolume] = useState(0)
     const [stageing_height,setStageingHeight] =useState(0)
@@ -65,11 +69,12 @@ function Structure() {
     const [design,setDesign] = useState("")
     const [check1,setCheck1] = useState("")
     const [date,setDate] = useState("")
+    // const [processdata,setProcessdata] = useState()
 
-
+ 
 
     const dispatch =  useDispatch()
-    const structureData = useSelector((state)=>state.strcture?.structureData)
+    
     const loading =  useSelector((state)=>state.strcture?.loading)
     const handleNextStep = ()=>{
         const data = { 
@@ -196,6 +201,7 @@ function Structure() {
 
 
         }
+        console.log("reccheck my data",typeof(data.dtbw))
         dispatch(recheck(data))
     }
     useEffect(()=>{
@@ -237,10 +243,22 @@ function Structure() {
         setWh(structureData?.wh)
         setSbc(structureData?.sbc)
         setNo_of_s(structureData?.no_o_s)
-    },[structureData])
+        // setProcessdata(
+        //     structureData?.data?.map(item => {
+        //       const parts = item.split(' '); // Split the string by spaces
+        //       console.log("split part",parts)
+        //       const label = parts.slice(0, -1).join(' ');// Join all parts except the last one (numbers)
+        //       console.log("label label",label)
+        //       const numbers = parts.slice(-2).map(Number);// Convert the last part(s) to numbers
+        //       console.log("number",numbers)
+        //       return { label, numbers };
+        //     })
+        //   );
 
-    const [selectedValue, setSelectedValue] = useState('');
-    const [soiltype,setSoiltype] = useState('');
+        },[structureData])
+
+    const [selectedValue, setSelectedValue] = useState('Category-1');
+    const [soiltype,setSoiltype] = useState('Soft soil');
 
     const handleChange = (event) => {
       setSelectedValue(event.target.value);
@@ -248,6 +266,45 @@ function Structure() {
     const handleSoil = (event)=>{
         setSoiltype(event.target.value)
     }
+    useEffect(()=>{
+        const resultObject = {};
+
+        structureData?.data?.forEach(item => {
+        const parts = item.split(' ');
+        const numbers = parts.slice(-2).map(Number); // Get the last two parts as numbers
+        const label = parts.slice(0, -2).join(' '); // Join the remaining parts as the label
+        numbers.forEach(number => {
+            if (!resultObject[number]) {
+            resultObject[number] = [];
+            }
+            resultObject[number].push(label);
+        });
+        });
+        setProcessdata(resultObject)
+    },[structureData])
+    console.log("process data",processdata)
+    // useEffect(() => {
+    //     const processedData = {};
+        
+    //     structureData?.data?.forEach(item => {
+    //       const parts = item.split(' ');
+    //       const label = parts.slice(0, -1).join(' ');
+    //       const number = Number(parts.slice(-1)[0]);
+          
+    //       if (!processedData[number]) {
+    //         processedData[number] = [];
+    //       }
+    //       processedData[number].push(label);
+    //     });
+    
+    //     const finalProcessdata = Object.entries(processedData).map(([number, labels]) => ({
+    //       number: Number(number),
+    //       labels,
+    //     }));
+    
+    //     setProcessdata(finalProcessdata);
+    //   }, [structureData]);
+    //   console.log("process data",processdata)
   return (
 
     <div>
@@ -282,173 +339,559 @@ function Structure() {
         </Container>
        
            
-            
-        <Container>
+        <Container>  
+        <div  className ="voldiv" style={{width:"60%"}}>
+                <p className='validationtxt'>Make sure you have atleast 20 m-point!</p>
+                <p className='validationtxt'>How this works ? </p>
                 <div className='strucform'>
-                    <p className='structlabel'>Volume (KL)</p>
+                    <p className='structlabel'>1. Volume (KL)</p>
                     <input className='structinput' onChange={(e)=>setVolume(e.target.value)} />
                 </div>
                 <div className='strucform'>
-                    <p className='structlabel'>Staging Height (mm)</p>
+                    <p className='structlabel'>2. Staging Height (mm)</p>
                     <input  className='structinput' onChange={(e)=>setStageingHeight(e.target.value)} />
                 </div>
                 <div className='strucform'>
-                    <p className='structlabel'>Elevation (m)</p>
+                    <p className='structlabel'>3. Elevation (m)</p>
                     <input className='structinput' onChange={(e)=>setElevation(e.target.value)} />
                 </div>
-        </Container>
+        </div>
+        </Container>  
         
         {showInput  &&  !loading && (
         <Container >
     <div className='imagc'>
         <div style={{width:"100%"}}>
             <div className='strucform'>
-                <p className='structlabel'>Wh (mm)</p>
+                <p className='structlabel'>4. Wh (mm)</p>
                 <input className='structinput' value={wh} onChange={(e)=>setWh(e.target.value)} />
             </div>
-            <div className='strucform'>
-                <p className='structlabel'>Tbwt (mm)</p>
-                <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '4' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
             </div>
-            
-            <div className='strucform'>
-                <p className='structlabel'>Dtbw (mm)</p>
-                <input className='structinput'value={dtbw} onChange={(e)=>setDtbw(e.target.value)}/>
-            </div>
-            
-            <div className='strucform'>
-                <p className='structlabel'>Tbw (mm)</p>
-                <input className='structinput' value={twb} onChange={(e)=>setTwb(e.target.value)}/>
-            </div>
-            
-            <div className='strucform'>
-                <p className='structlabel'>r (mm)</p>
-                <input className='structinput' value={r} onChange={(e)=>setR(e.target.value)}/>
-            </div>
-            
+           
 
             <div className='strucform'>
-                <p className='structlabel'>Ncr (no of columns)</p>
+                <p className='structlabel'>5. Tbwt (mm)</p>
+                <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '5' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+          
+            
+            <div className='strucform'>
+                <p className='structlabel'>6. Dtbw (mm)</p>
+                <input className='structinput'value={dtbw} onChange={(e)=>setDtbw(e.target.value)}/>
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '6' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
+            <div className='strucform'>
+                <p className='structlabel'>7. Tbw (mm)</p>
+                <input className='structinput' value={twb} onChange={(e)=>setTwb(e.target.value)}/>
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '7' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
+            
+            <div className='strucform'>
+                <p className='structlabel'>8. r (mm)</p>
+                <input className='structinput' value={r} onChange={(e)=>setR(e.target.value)}/>
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '8' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+
+            <div className='strucform'>
+                <p className='structlabel'>9. Ncr (no of columns)</p>
                 <input className='structinput' value={ncr} onChange={(e)=>setNcr(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '9' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Dl (mm)</p>
+                <p className='structlabel'>10. Dl (mm)</p>
                 <input className='structinput' value={dl} onChange={(e)=>setDl(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '10' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Nl (no of tie beams)</p>
+                <p className='structlabel'>11. Nl (no of tie beams)</p>
                 <input className='structinput' value={nl} onChange={(e)=>setNl(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '11' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Dbw4 (mm)</p>
+                <p className='structlabel'>12. Dbw4 (mm)</p>
                 <input className='structinput' value={dbw4} onChange={(e)=>setDbw4(e.target.value)}  />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '12' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Bw4 (mm)</p>
+                <p className='structlabel'>13. Bw4 (mm)</p>
                 <input className='structinput' value={bw4} onChange={(e)=>setBw4(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '13' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Tl (mm)</p>
+                <p className='structlabel'>14. Tl (mm)</p>
                 <input className='structinput' value={tl}  onChange={(e)=>setTl(e.target.value)}/>
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '14' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
             </div>
          
             <div className='strucform'>
-                <p className='structlabel'>Dbw3 (mm)</p>
+                <p className='structlabel'>15. Dbw3 (mm)</p>
                 <input className='structinput' value={dbw3} onChange={(e)=>setDbw3(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '15' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Bw3 (mm)</p>
+                <p className='structlabel'>16. Bw3 (mm)</p>
                 <input className='structinput' value={bw3} onChange={(e)=>setBw3(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '16' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Tdom1 (mm)</p>
+                <p className='structlabel'>17. Tdom1 (mm)</p>
                 <input className='structinput' value={tdom1} onChange={(e)=>setTdom1(e.target.value)} />
             </div>
+           
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '17' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdom2 (mm)</p>
+                <p className='structlabel'>18. Tdom2 (mm)</p>
                 <input className='structinput' value={tdom2}  onChange={(e)=>setTdom2(e.target.value)}/>
             </div>
+            
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '18' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
             <div className='strucform'>
-                <p className='structlabel'>Tdom3 (mm)</p>
+                <p className='structlabel'>19. Tdom3 (mm)</p>
                 <input className='structinput' value={tdom3}  onChange={(e)=>setTdom3(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '19' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Tcon (mm)</p>
+                <p className='structlabel'>20. Tcon (mm)</p>
                 <input className='structinput' value={tcon} onChange={(e)=>setTcon(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '20' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Bw2 (mm)</p>
+                <p className='structlabel'>21. Bw2 (mm)</p>
                 <input className='structinput'  value={bw2} onChange={(e)=>setBw2(e.target.value)}/>
             </div>
+            
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '21' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
+          
             <div className='strucform'>
-                <p className='structlabel'>Dbw2 (mm)</p>
+                <p  className='structlabel'>22. Dbw2 (mm)</p>
                 <input className='structinput' value={dbw2} onChange={(e)=>setDbw2(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '22' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            <div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Cr (mm)</p>
+                <p className='structlabel'>23. Cr (mm)</p>
                 <input className='structinput' value={cr}  onChange={(e)=>setCr(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '23' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            <div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Harch1 (mm)</p>
+                <p className='structlabel'>24. Harch1 (mm)</p>
                 <input className='structinput' value={harch1} onChange={(e)=>setHarch1(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '24' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Parch2 (mm)</p>
+                <p className='structlabel'>25. Parch2 (mm)</p>
                 <input className='structinput' value={parch2} onChange={(e)=>setParch2(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '25' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Watlevv (mm)</p>
+                <p className='structlabel'>26. Watlevv (mm)</p>
                 <input className='structinput' value={watlevv}  onChange={(e)=>setWatlevv(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '26' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Ttb (mm)</p>
+                <p className='structlabel'>27. Ttb (mm)</p>
                 <input className='structinput' value={ttb}  onChange={(e)=>setTtb(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '27' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Dttb (mm)</p>
+                <p className='structlabel'>28. Dttb (mm)</p>
                 <input className='structinput' value={dttb}  onChange={(e)=>setDttb(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '28' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>T3 (mm)</p>
+                <p className='structlabel'>29. T3 (mm)</p>
                 <input className='structinput' value={t3} onChange={(e)=>setT3(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '29' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Df (mm)</p>
+                <p className='structlabel'>30. Df (mm)</p>
                 <input className='structinput' value={df} onChange={(e)=>setDf(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '30' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Dbw (mm)</p>
+                <p className='structlabel'>31. Dbw (mm)</p>
                 <input className='structinput' value={dbw} onChange={(e)=>setDbw(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '31' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Bw (mm)</p>
+                <p className='structlabel'>32. Bw (mm)</p>
                 <input className='structinput' value={bw} onChange={(e)=>setBw(e.target.value)}/>
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '32' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+           
             <div className='strucform'>
-                <p className='structlabel'>Sbc (T/m2)</p>
+                <p className='structlabel'>33. Sbc (T/m2)</p>
                 <input className='structinput' value={sbc} onChange={(e)=>setSbc(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '33' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+          
             <div className='strucform'>
-                <p className='structlabel'>Tdf (mm)</p>
+                <p className='structlabel'>34. Tdf (mm)</p>
                 <input className='structinput' value={tdf} onChange={(e)=>setTdf(e.target.value)} />
             </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '34' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
+          
             <div className='strucform'>
-                <p className='structlabel'>Aw (mm)</p>
+                <p className='structlabel'>35. Aw (mm)</p>
                 <input className='structinput' value={aw} onChange={(e)=>setAw(e.target.value)}/>
+            </div>
+            <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '35' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
             </div>
         
             <div className='strucform'>
-                <p className='structlabel'>No_of_steps in each stair </p>
+                <p className='structlabel'>36. No_of_steps in each stair </p>
                 <input className='structinput' value={no_of_s} onChange={(e)=>setNo_of_s(e.target.value)}/>
             </div>
+            
             <div className='strucform'>
-                <p className='structlabel'>Category</p>
+                <p className='structlabel'>37. Category</p>
                 <FormControl style={{  width: "400px",height:"100px"}}>
                     <InputLabel>Select an option</InputLabel>
                     <Select value={selectedValue} onChange={handleChange}>
-                        <MenuItem value="">
-                        <em>None</em>
-                        </MenuItem>
+                       
                         <MenuItem value="Category-1">Category-1</MenuItem>
                         <MenuItem value="Category-2">Category-2</MenuItem>
                         <MenuItem value="Category-3">Category-3</MenuItem>
@@ -457,25 +900,23 @@ function Structure() {
                 </FormControl>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Seismiczone</p>
+                <p className='structlabel'>38. Seismiczone</p>
                 <input className='structinput' value={seismiczone} onChange={(e)=>setSeismiczone(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Importencefactor</p>
+                <p className='structlabel'>39. Importencefactor</p>
                 <input className='structinput' value={importencefactor} onChange={(e)=>setImportencefactor(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Reductionfactorfactor</p>
+                <p className='structlabel'>40. Reductionfactorfactor</p>
                 <input className='structinput' value={reductionfactor} onChange={(e)=>setReductionfactor(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Soil Type</p>
+                <p className='structlabel'>41. Soil Type</p>
                 <FormControl style={{  width: "400px"}}>
                     <InputLabel>Select an option</InputLabel>
                     <Select value={soiltype} onChange={handleSoil}>
-                        <MenuItem value="" style={{height:"100%"}}>
-                        <em>None</em>
-                        </MenuItem>
+                    
                         <MenuItem value="Soft soil">Soft soil</MenuItem>
                         <MenuItem value="Rocky">Rocky</MenuItem>
                         <MenuItem value="Medium soil">Medium soil</MenuItem>
@@ -484,51 +925,50 @@ function Structure() {
                 </FormControl>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Basic Wind Speed</p>
+                <p className='structlabel'>42. Basic Wind Speed</p>
                 <input className='structinput' value={basic_wind_speed} onChange={(e)=>setBasic_wind_speed(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Wind k1 </p>
+                <p className='structlabel'>43. Wind k1 </p>
                 <input className='structinput' value={wind_k1} onChange={(e)=>setWind_k1(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Wind k3 </p>
+                <p className='structlabel'>44. Wind k3 </p>
                 <input className='structinput' value={wind_k3} onChange={(e)=>setWind_k3(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Project name</p>
+                <p className='structlabel'>45. Project name</p>
                 <input className='structinput' value={project_name} onChange={(e)=>setProject_name(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Document number</p>
+                <p className='structlabel'>46. Document number</p>
                 <input className='structinput' value={doc_no} onChange={(e)=>setDoc_no(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Company Name</p>
+                <p className='structlabel'>47. Company Name</p>
                 <input className='structinput' value={company_name} onChange={(e)=>setCompany_name(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Title</p>
+                <p className='structlabel'>48. Title</p>
                 <input className='structinput' value={title} onChange={(e)=>setTitle(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Revision number</p>
+                <p className='structlabel'>49. Revision number</p>
                 <input className='structinput' value={Rev} onChange={(e)=>setRev(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Designed by</p>
+                <p className='structlabel'>50. Designed by</p>
                 <input className='structinput' value={design} onChange={(e)=>setDesign(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Checked by</p>
+                <p className='structlabel'>51. Checked by</p>
                 <input className='structinput' value={check1} onChange={(e)=>setCheck1(e.target.value)}/>
             </div>
             <div className='strucform'>
-                <p className='structlabel'>Date</p>
+                <p className='structlabel'>52. Date</p>
                 <input className='structinput' value={date} onChange={(e)=>setDate(e.target.value)}/>
             </div>
-
-            <div>
+            {/* <div>
                 {structureData?.data?.map((item)=>{
                     return(
                     <div>
@@ -536,7 +976,9 @@ function Structure() {
                     </div>
                     )
                 })}
-            </div>
+            </div> */}
+
+                    
             {structureData?.data?.length  ?
             <div>
                 { loading  ? 
@@ -555,22 +997,25 @@ function Structure() {
             
           
            
-        </div>
-        <div className='imagecontainer'>
-                <ReactPanZoom
-                    image={stru}
-                    alt='section'
-                />
-                   <ReactPanZoom
-                    image={pln1}
-                    alt='plan'
-                />
-                   <ReactPanZoom
-                    image={pln2}
-                    alt='plan'
-                />
-        </div>
-        </div>
+            </div>
+            </div>
+                <div className='imagecontainer'>
+                        <ReactPanZoom
+                            image={stru}
+                            alt='section'
+                        />
+                        <ReactPanZoom
+                            image={pln1}
+                            alt='plan'
+                        />
+                        <ReactPanZoom
+                            image={pln2}
+                            alt='plan'
+                        />
+                </div>
+            
+       </div>
+       </div>
         </Container>
       )}
     </div>
