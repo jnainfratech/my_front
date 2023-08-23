@@ -207,11 +207,11 @@ function Structure() {
       
 
 
-        console.log("reccheck my data",data)
+        // console.log("reccheck my data",data)
         dispatch(recheck(data))
     }
     useEffect(()=>{
-        console.log("my  data nigger",structureData)
+        // console.log("my  data nigger",structureData)
         setAw(structureData?.aw)
         setBw(structureData?.bw)
         setBw2(structureData?.bw2)
@@ -288,7 +288,7 @@ function Structure() {
         });
          setProcessdata(resultObject)
     },[structureData])
-    console.log("process data",processdata)
+    // console.log("process data",processdata)
     // useEffect(() => {
     //     const processedData = {};
         
@@ -893,7 +893,7 @@ function Structure() {
                     key === '35' && (
                     <div key={index}>
                         {values.map((value, innerIndex) => (
-                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        <p className='validationtxt' key={innerIndex}>{value} foundation</p>
                         ))}
                     </div>
                     )
@@ -1012,6 +1012,7 @@ function Structure() {
             : 
             <div>
                 <button className='valapi' onClick={handleGenrate}>Generate</button>
+                <p>Generate- do not change values </p>
             </div>}
             
           

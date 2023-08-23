@@ -24,7 +24,7 @@ useEffect(()=>{
   };
   const handleReg = ()=>{
     navigate("/register")
-    console.log("Event gerate")
+    // console.log("Event gerate")
   }
   useEffect(() => {
     // Function to update the text with animation

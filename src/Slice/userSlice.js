@@ -7,7 +7,7 @@ import axios from 'axios';
 export const fetchUserData = createAsyncThunk(
     'user/fetchUserData',
     async (data) => {   
-    console.log("Dataee =====>",data)
+    // console.log("Dataee =====>",data)
       const response = await axiosInstance.post('/api/register',{name:data.name,hashed_password:data.password,email:data.email})
 
       return response;
@@ -18,7 +18,7 @@ export const fetchUserData = createAsyncThunk(
   export const loginUser =  createAsyncThunk(
     'user/login',
     async (data,{dispatch}) =>{
-      console.log("data",data)
+      // console.log("data",data)
       const response =  await axiosInstance.post("/api/login",{name:data.name,password:data.password})
       return response
     }
@@ -50,7 +50,7 @@ export const logoutUser =  createAsyncThunk(
         })
 
         .addCase(fetchUserData.fulfilled, (state, action) => {
-        console.log("my payload",action.payload)
+        // console.log("my payload",action.payload)
           state.loading = false;
           state.userData = action.payload.data;
           // localStorage.setItem('accessToken', action.payload.data.access_token);

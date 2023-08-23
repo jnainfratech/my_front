@@ -7,7 +7,7 @@ import axios from 'axios';
 export const initateTrans  = createAsyncThunk(
     'trans/initateTrans',
     async (data) => {   
-    console.log("Dataee =====>",data)
+    // console.log("Dataee =====>",data)
       const response = await axiosInstance.post('/transactions',data)
 
       return response;

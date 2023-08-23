@@ -14,7 +14,7 @@ export const check = createAsyncThunk(
 export const recheck = createAsyncThunk(
     'structure/recheck',
     async(data)=>{
-        console.log("mydata============>en recheck",data)
+        // console.log("mydata============>en recheck",data)
         const response = axiosInstance.post('/api/recheck',data)
         return response
     }
@@ -23,10 +23,10 @@ export const genrate = createAsyncThunk(
     'structure/genrate',
     
     async(data)=>{
-        console.log("Data send in genrate",data)
+        // console.log("Data send in genrate",data)
         const response = await axiosInstance.post('/genrate',data, { responseType: 'blob' })
         const url = window.URL.createObjectURL(new Blob([response.data]));
-        console.log("data in res",response)
+        // console.log("data in res",response)
         const link = document.createElement('a');
         link.href = url;
         link.setAttribute('download', 'output.zip');

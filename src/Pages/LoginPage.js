@@ -20,7 +20,7 @@ function LoginPage() {
     navigate("/register")
   }
   const handleLogin = ()=>{
-    console.log("even genrated")
+    // console.log("even genrated")
     const data =  {
       name:username,
       password:password

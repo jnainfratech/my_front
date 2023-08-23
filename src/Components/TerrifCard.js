@@ -33,7 +33,7 @@ function TerrifCard({data}) {
     }, [url, paymentWindow]);
   
     const handlePayment = (type, price, coins, e) => {
-      console.log('payment generate');
+      // console.log('payment generate');
       const data = {
         name: type,
         price: price,

@@ -15,7 +15,7 @@ import { checkStatusTransaction, getUserTransaction } from '../Slice/transaction
 function TransactionPage() {
   const data = useSelector(state=>state?.trans?.userData?.data)
   const handleAction = (e,id)=>{
-    console.log("my id ", id)
+    // console.log("my id ", id)
     dispatch(checkStatusTransaction(id))
     dispatch(getUserTransaction())
   }
