@@ -286,7 +286,7 @@ function Structure() {
             resultObject[number].push(label);
         });
         });
-        setProcessdata(resultObject)
+         setProcessdata(resultObject)
     },[structureData])
     console.log("process data",processdata)
     // useEffect(() => {
@@ -346,13 +346,24 @@ function Structure() {
        
            
         <Container>  
-        <div  className ="voldiv" style={{width:"60%"}}>
+        <div  className ="voldiv" style={{width:"72%"}}>
                 <p className='validationtxt'>Make sure you have atleast 20 m-point!</p>
                 <p className='validationtxt'>How this works ? </p>
                 <div className='strucform'>
                     <p className='structlabel'>1. Volume (KL)</p>
                     <input className='structinput' onChange={(e)=>setVolume(e.target.value)} />
                 </div>
+                <div>
+                {Object.entries(processdata).map(([key, values], index) => (
+                    key === '1' && (
+                    <div key={index}>
+                        {values.map((value, innerIndex) => (
+                        <p className='validationtxt' key={innerIndex}>{value}</p>
+                        ))}
+                    </div>
+                    )
+                ))}
+            </div>
                 <div className='strucform'>
                     <p className='structlabel'>2. Staging Height (mm)</p>
                     <input  className='structinput' onChange={(e)=>setStageingHeight(e.target.value)} />
@@ -365,7 +376,7 @@ function Structure() {
         </Container>  
         
         {showInput  &&  !loading && (
-        <Container >
+    <Container >
     <div className='imagc'>
         <div style={{width:"100%"}}>
             <div className='strucform'>
@@ -1007,7 +1018,9 @@ function Structure() {
            
             </div>
             </div>
-                <div className='imagecontainer'>
+            
+            </div>
+            <div className='imagecontainer'>
                         <ReactPanZoom
                             image={stru}
                             alt='section'
@@ -1021,9 +1034,9 @@ function Structure() {
                             alt='plan'
                         />
                 </div>
-            
        </div>
-       </div>
+               
+
         </Container>
       )}
     </div>
