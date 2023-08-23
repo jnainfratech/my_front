@@ -70,7 +70,11 @@ function Structure() {
     const [check1,setCheck1] = useState("")
     const [date,setDate] = useState("")
     // const [processdata,setProcessdata] = useState()
+    ////////////////////////////////////////////////////////////////////////////
 
+    const [errortbwt,setErrortbwt ] =  useState("")
+    const [errortbw,setErrorTbw] = useState("")
+    const [errordbw4,setErrorDbw4] = useState("")
  
 
     const dispatch =  useDispatch()
@@ -144,6 +148,7 @@ function Structure() {
         dispatch(genrate(data))
     }
     const handleUpdate = ()=>{
+      
         const data = {
             vol: Number(volume),
             st:  Number(stageing_height),
@@ -198,9 +203,10 @@ function Structure() {
             design: design,
             check: check1,
             date: date
-
-
         }
+      
+
+
         console.log("reccheck my data",data)
         dispatch(recheck(data))
     }
@@ -383,6 +389,7 @@ function Structure() {
                 <p className='structlabel'>5. Tbwt (mm)</p>
                 <input className='structinput'value={tbwh} onChange={(e)=>setTbwh(e.target.value)} />
             </div>
+            {errortbwt ? <p className='validationtxt'> {errortbwt}</p>: <p></p>}
             <div>
                 {Object.entries(processdata).map(([key, values], index) => (
                     key === '5' && (
@@ -416,6 +423,7 @@ function Structure() {
                 <p className='structlabel'>7. Tbw (mm)</p>
                 <input className='structinput' value={twb} onChange={(e)=>setTwb(e.target.value)}/>
             </div>
+            {errortbw ? <p className='validationtxt'> {errortbwt}</p>: <p></p>}
             <div>
                 {Object.entries(processdata).map(([key, values], index) => (
                     key === '7' && (
