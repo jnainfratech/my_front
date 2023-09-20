@@ -6,7 +6,7 @@ name: React.js C
 on:
   push:
     branches:
-      - maste
+      - master
   pull_request:
     branches:
       - master
