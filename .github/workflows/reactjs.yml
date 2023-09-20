@@ -6,7 +6,7 @@ name: React.js C
 on:
   push:
     branches:
-      - master
+      - maste
   pull_request:
     branches:
       - master
@@ -14,7 +14,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
 
     strategy:
       matrix:
