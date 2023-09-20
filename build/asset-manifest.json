@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.55123b8b.css",
+    "main.js": "/static/js/main.46f3c59b.js",
+    "static/media/LoginPage.png": "/static/media/LoginPage.644e4e81a30f82590be7.png",
+    "static/media/about2.jpg": "/static/media/about2.77d797125aaa3e8b518d.jpg",
+    "static/media/Rectangle.png": "/static/media/Rectangle.81b3d1f5c57eae53d65e.png",
+    "static/media/Rectangle2.png": "/static/media/Rectangle2.464a791fa1562f69bffd.png",
+    "static/media/about3.jpg": "/static/media/about3.264a468db016616e5aff.jpg",
+    "static/media/RegisterPage.png": "/static/media/RegisterPage.b4bd1be78d3c5a012d8d.png",
+    "static/media/Plans.png": "/static/media/Plans.85b2cc971965983810a4.png",
+    "static/media/Structure.png": "/static/media/Structure.017ebe517188714104a4.png",
+    "static/media/section.png": "/static/media/section.e25169fa33a17a69ce50.png",
+    "static/media/plan1.png": "/static/media/plan1.55ba1164b6409bfac032.png",
+    "static/media/plan2.png": "/static/media/plan2.c40aeb94507e3ca5f6b9.png",
+    "static/media/Logo12.png": "/static/media/Logo12.6ae4d8c2cafe0110604a.png",
+    "static/media/Dark.png": "/static/media/Dark.33b355fa6e22bdc027ca.png",
+    "index.html": "/index.html",
+    "main.55123b8b.css.map": "/static/css/main.55123b8b.css.map",
+    "main.46f3c59b.js.map": "/static/js/main.46f3c59b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.55123b8b.css",
+    "static/js/main.46f3c59b.js"
+  ]
+}
